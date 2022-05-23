@@ -26,8 +26,8 @@ def run_eda() :
 
     selected_col = st.selectbox('최대 최소 원하는 컬럼 선택',col_list)
 
-    df_max = car_df.loc[ car_df[selected_col]] == car_df[[selected_col].max() , ]
-    df_min = car_df.loc[ car_df[selected_col]] == car_df[[selected_col].min() , ]
+    df_max = car_df.loc[ car_df[selected_col] == car_df[selected_col].max() , ]
+    df_min = car_df.loc[ car_df[selected_col] == car_df[selected_col].min() , ]
 
 
     st.text('{}컬럼의 최대값에 해당하는 데이터 입니다.'.format(selected_col))
@@ -44,16 +44,16 @@ def run_eda() :
 
     if len(selected_list) >=2 :
 
-    fig1 = sb.pairplot(data= car_df[selected_list])
-    st.pyplot(fig1)
+        fig1 = sb.pairplot(data= car_df[selected_list])
+        st.pyplot(fig1)
 
-    st.text('선택하신 컬럼끼리의 상관계수 입니다.')
-    st.dataframe(st.car_df[selected_list].corr())
+        st.text('선택하신 컬럼끼리의 상관계수 입니다.')
+        st.dataframe(st.car_df[selected_list].corr())
 
-    fig2 = plt.figure()
-    sb.heatmap(data=car_df[selected_list].corr(), annot=True,
+        fig2 = plt.figure()
+        sb.heatmap(data=car_df[selected_list].corr(), annot=True,
         vmin = -1, vmax = 1, cmap='coolwarm', linewidths=0.5)
-    st.pyplot(fig2)
+        st.pyplot(fig2)
 
 
     ### 고객 이름 컬럼을 검색할 수 있도록 만듭니다.
